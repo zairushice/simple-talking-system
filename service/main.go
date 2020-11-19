@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/binary"
 	"encoding/json"
 	"fmt"
 	"net"
@@ -8,19 +9,31 @@ import (
 )
 
 func readPkg(conn net.Conn) (msg message.Message, err error) {
-	readBytes := make([]byte, 8096)
-	n, err := conn.Read(readBytes)
+	buf := make([]byte, 8096)
+	_, err = conn.Read(buf[:4])
 	if err != nil {
-		fmt.Println("read bytes error:", err)
+		fmt.Println("read length error:", err)
 		return
 	}
-	fmt.Println("read bytes n=", n)
-	err = json.Unmarshal(readBytes[:n], &msg)
+	lengthUint := binary.BigEndian.Uint32(buf[:4])
+	fmt.Println("message length=", lengthUint)
+
+	n, err := conn.Read(buf[:lengthUint])
 	if err != nil {
-		fmt.Println("unmarshal error:", err)
+		fmt.Println("read message error:", err)
 		return
 	}
-	fmt.Println("unmarshal result=", msg)
+
+	fmt.Println("read message length=", n)
+	msgBytes := buf[:lengthUint]
+
+	err = json.Unmarshal(msgBytes, &msg)
+	if err != nil {
+		fmt.Println("message unmarshal error:", err)
+		return
+	}
+	fmt.Println("msg=", msg)
+
 	return
 }
 

@@ -20,7 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="be7d44bb-8449-4f4c-b204-0fbc0c984e1b" name="Default Changelist" comment="update">
-      <change beforePath="$PROJECT_DIR$/client/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/client/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/login.go" beforeDir="false" afterPath="$PROJECT_DIR$/client/login.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,7 +38,7 @@
       </list>
     </option>
   </component>
-  <component name="GOROOT" path="E:\Go" />
+  <component name="GOROOT" path="/usr/local/go" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -56,7 +60,7 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="go.vgo" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
   </component>
   <component name="RunManager" selected="Go Build.go build simple-talking-system/client">
     <configuration name="go build main.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
@@ -77,6 +81,10 @@
       <directory value="$PROJECT_DIR$" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Go Build.go build main.go" />
+      <item itemvalue="Go Build.go build simple-talking-system/client" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Go Build.go build simple-talking-system/client" />
@@ -113,14 +121,56 @@
     </environment>
   </component>
   <component name="WindowStateProjectService">
-    <state x="314" y="110" key="SettingsEditor" timestamp="1604454287015">
-      <screen x="0" y="0" width="2048" height="1112" />
+    <state x="1080" y="657" key="#GOROOT" timestamp="1605361141630">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state x="1080" y="657" key="#GOROOT/0.0.2560.1440@0.0.2560.1440" timestamp="1605361141630" />
+    <state x="737" y="358" width="1086" height="758" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1605796873129">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state x="737" y="358" width="1086" height="758" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1440@0.0.2560.1440" timestamp="1605796873129" />
+    <state width="2498" height="397" key="GridCell.Tab.0.bottom" timestamp="1605797014655">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state width="2498" height="397" key="GridCell.Tab.0.bottom/0.0.2560.1440@0.0.2560.1440" timestamp="1605797014655" />
+    <state width="2498" height="397" key="GridCell.Tab.0.center" timestamp="1605797014655">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state width="2498" height="397" key="GridCell.Tab.0.center/0.0.2560.1440@0.0.2560.1440" timestamp="1605797014655" />
+    <state width="2498" height="397" key="GridCell.Tab.0.left" timestamp="1605797014655">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state width="2498" height="397" key="GridCell.Tab.0.left/0.0.2560.1440@0.0.2560.1440" timestamp="1605797014655" />
+    <state width="2498" height="397" key="GridCell.Tab.0.right" timestamp="1605797014655">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state width="2498" height="397" key="GridCell.Tab.0.right/0.0.2560.1440@0.0.2560.1440" timestamp="1605797014655" />
+    <state width="2504" height="494" key="GridCell.Tab.1.bottom" timestamp="1605715560792">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state width="2504" height="494" key="GridCell.Tab.1.bottom/0.0.2560.1440@0.0.2560.1440" timestamp="1605715560792" />
+    <state width="2504" height="494" key="GridCell.Tab.1.center" timestamp="1605715560792">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state width="2504" height="494" key="GridCell.Tab.1.center/0.0.2560.1440@0.0.2560.1440" timestamp="1605715560792" />
+    <state width="2504" height="494" key="GridCell.Tab.1.left" timestamp="1605715560791">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state width="2504" height="494" key="GridCell.Tab.1.left/0.0.2560.1440@0.0.2560.1440" timestamp="1605715560791" />
+    <state width="2504" height="494" key="GridCell.Tab.1.right" timestamp="1605715560792">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state width="2504" height="494" key="GridCell.Tab.1.right/0.0.2560.1440@0.0.2560.1440" timestamp="1605715560792" />
+    <state x="816" y="134" key="SettingsEditor" timestamp="1605715464342">
+      <screen x="0" y="0" width="2560" height="1440" />
     </state>
     <state x="221" y="89" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1604419026594" />
     <state x="314" y="110" key="SettingsEditor/0.0.2048.1112@0.0.2048.1112" timestamp="1604454287015" />
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1604420745083">
-      <screen x="0" y="0" width="1440" height="900" />
+    <state x="816" y="134" key="SettingsEditor/0.0.2560.1440@0.0.2560.1440" timestamp="1605715464342" />
+    <state x="569" y="304" key="Vcs.Push.Dialog.v2" timestamp="1605797171311">
+      <screen x="0" y="0" width="2560" height="1440" />
     </state>
     <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1604420745083" />
+    <state x="569" y="304" key="Vcs.Push.Dialog.v2/0.0.2560.1440@0.0.2560.1440" timestamp="1605797171311" />
   </component>
 </project>

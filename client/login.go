@@ -8,19 +8,13 @@ import (
 	"simple-talking-system/common/message"
 )
 
-func writeBytes(bytes []byte, network string, address string) (err error) {
-	conn, err := net.Dial(network, address)
-	defer conn.Close()
-	if err != nil {
-		fmt.Println("dial error:", err)
-		return err
-	}
+func writeBytes(conn net.Conn, bytes []byte) (err error) {
 	n, err := conn.Write(bytes)
 	if err != nil {
-		fmt.Println("write error:", err)
-		return err
+		fmt.Println("write bytes error:", err)
 	}
-	fmt.Println("write bytes:", n)
+
+	fmt.Println("write bytes=", n)
 	return
 }
 
@@ -41,9 +35,24 @@ func login(userId int, passWord string) (err error) {
 	msgLength := uint32(len(bytes))
 	lenBytes := make([]byte, 4)
 	binary.BigEndian.PutUint32(lenBytes, msgLength)
-	fmt.Println(string(bytes))
-	fmt.Println(msgLength)
-	_ = writeBytes(lenBytes, "tcp", "localhost:8888")
+
+	conn, err := net.Dial("tcp", "192.168.50.81:8888")
+	if err != nil {
+		fmt.Println("dial error:", err)
+		return
+	}
+
+	err = writeBytes(conn, lenBytes)
+	if err != nil {
+		fmt.Println("write message length error:", err)
+		return
+	}
+	err = writeBytes(conn, bytes)
+	if err != nil {
+		fmt.Println("write message error:", err)
+	}
+	fmt.Println("message length=", msgLength)
+	fmt.Println("message content=", string(bytes))
 
 	return
 }
