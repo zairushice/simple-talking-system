@@ -3,12 +3,13 @@ package main
 import (
 	"fmt"
 	"net"
+	"simple-talking-system/service/processor"
 )
 
 func mainProcess(conn net.Conn) {
 	defer conn.Close()
-	p := Processor{Conn: conn}
-	err := p.process2()
+	p := processor.Processor{Conn: conn}
+	err := p.Process2()
 	if err != nil {
 		return
 	}
