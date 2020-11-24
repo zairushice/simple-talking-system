@@ -5,9 +5,14 @@ import (
 	"fmt"
 	"net"
 	"simple-talking-system/common/message"
+	"simple-talking-system/service/utils"
 )
 
-func serverProcessLogin(conn net.Conn, msg *message.Message) (err error) {
+type UserProcessor struct {
+	Conn net.Conn
+}
+
+func (this *UserProcessor) ServerProcessLogin(msg *message.Message) (err error) {
 	dataBytes := []byte(msg.Data)
 	loginMsg := new(message.LoginMsg)
 	err = json.Unmarshal(dataBytes, &loginMsg)
@@ -37,7 +42,10 @@ func serverProcessLogin(conn net.Conn, msg *message.Message) (err error) {
 	if err != nil {
 		fmt.Println("marshal login response message error:", err)
 	}
-	err = utils.WriteBytes(conn, resMsgBytes)
+	tf := &utils.Transfer{
+		Conn: this.Conn,
+	}
+	err = tf.WriteBytes(resMsgBytes)
 	if err != nil {
 		fmt.Println("send login response message error:", err)
 		return
@@ -46,18 +54,6 @@ func serverProcessLogin(conn net.Conn, msg *message.Message) (err error) {
 	return
 }
 
-func serverProcessRegister(conn net.Conn, msg *message.Message) (err error) {
-	return
-}
-
-func serverProcessMessage(conn net.Conn, msg *message.Message) (err error) {
-	switch msg.Type {
-	case message.LoginMsgType:
-		err = serverProcessLogin(conn, msg)
-	case message.RegisterMsgType:
-		err = serverProcessRegister(conn, msg)
-	default:
-		fmt.Println("invalid message type")
-	}
+func (this *UserProcessor) ServerProcessRegister(msg *message.Message) (err error) {
 	return
 }

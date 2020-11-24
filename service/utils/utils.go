@@ -14,16 +14,15 @@ type Transfer struct {
 	Buf  [8096]byte
 }
 
-func (t *Transfer) WriteBytes(conn net.Conn, bytes []byte) (err error) {
+func (this *Transfer) WriteBytes(bytes []byte) (err error) {
 	msgLength := uint32(len(bytes))
-	lenBytes := make([]byte, 4)
-	binary.BigEndian.PutUint32(lenBytes, msgLength)
-	n, err := conn.Write(lenBytes)
+	binary.BigEndian.PutUint32(this.Buf[:4], msgLength)
+	n, err := this.Conn.Write(this.Buf[:4])
 	if err != nil {
 		fmt.Println("write message length error:", err)
 		return
 	}
-	n, err = conn.Write(bytes)
+	n, err = this.Conn.Write(bytes)
 	if err != nil || n != int(msgLength) {
 		fmt.Println("write message error:", err)
 		return
@@ -34,29 +33,27 @@ func (t *Transfer) WriteBytes(conn net.Conn, bytes []byte) (err error) {
 	return
 }
 
-func (t Transfer) ReadBytes(conn net.Conn) (msg message.Message, err error) {
-	buf := make([]byte, 8096)
-	_, err = conn.Read(buf[:4])
+func (this Transfer) ReadBytes() (msg message.Message, err error) {
+	_, err = this.Conn.Read(this.Buf[:4])
 	if err == io.EOF {
 		fmt.Println("client has closed the connection")
 		return
 	} else if err != nil {
 		fmt.Println("read message length error:", err)
 	}
-	lengthUint := binary.BigEndian.Uint32(buf[:4])
+	lengthUint := binary.BigEndian.Uint32(this.Buf[:4])
 	fmt.Println(lengthUint)
 
-	n, err := conn.Read(buf[:lengthUint])
+	n, err := this.Conn.Read(this.Buf[:lengthUint])
 	if err != nil || n != int(lengthUint) {
 		fmt.Println("read message error:", err)
 		return
 	}
 
-	fmt.Println("read message length and message success!!")
 	fmt.Printf("read meassage length=%v\n", lengthUint)
-	fmt.Printf("read message=%v\n", string(buf[:lengthUint]))
+	fmt.Printf("read message=%v\n", string(this.Buf[:lengthUint]))
 
-	err = json.Unmarshal(buf[:lengthUint], &msg)
+	err = json.Unmarshal(this.Buf[:lengthUint], &msg)
 	if err != nil {
 		fmt.Println("message unmarshal error:", err)
 		return
