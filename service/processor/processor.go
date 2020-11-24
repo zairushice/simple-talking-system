@@ -1,4 +1,4 @@
-package main
+package processor
 
 import (
 	"fmt"
@@ -25,7 +25,7 @@ func (this *Processor) ServerProcessMessage(msg *message.Message) (err error) {
 	return
 }
 
-func (this *Processor) process2() (err error) {
+func (this *Processor) Process2() (err error) {
 	for {
 		tf := &utils.Transfer{
 			Conn: this.Conn,
@@ -33,11 +33,11 @@ func (this *Processor) process2() (err error) {
 		msg, err := tf.ReadBytes()
 		if err != nil {
 			fmt.Println("readBytes error:", err)
-			return
+			return err
 		}
 		err = this.ServerProcessMessage(&msg)
 		if err != nil {
-			return
+			return err
 		}
 	}
 

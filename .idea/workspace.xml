@@ -20,7 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="be7d44bb-8449-4f4c-b204-0fbc0c984e1b" name="Default Changelist" comment="update">
-      <change beforePath="$PROJECT_DIR$/service/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/main/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/main/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/main/processor.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/processor/processor.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +38,11 @@
   </component>
   <component name="GOROOT" path="/usr/local/go" />
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1jmmhBc6idwXH8lyEU7A8kyfqjM" />
@@ -55,23 +62,34 @@
     <property name="configurable.Project.GOPATH.is.expanded" value="true" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/service" />
     <property name="settings.editor.selected.configurable" value="com.goide.configuration.GoLibrariesConfigurableProvider" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/service/main" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/service" />
       <recent name="$PROJECT_DIR$/service/main" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Build.go build simple-talking-system">
+  <component name="RunManager" selected="Go Build.go build simple-talking-system/client">
     <configuration name="go build main.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="simple-talking-system" />
       <working_directory value="$PROJECT_DIR$" />
       <kind value="FILE" />
       <filePath value="$PROJECT_DIR$/service/main/main.go" />
+      <package value="simple-talking-system" />
+      <directory value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build simple-talking-system" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="simple-talking-system" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <filePath value="$PROJECT_DIR$/main.go" />
       <package value="simple-talking-system" />
       <directory value="$PROJECT_DIR$" />
       <method v="2" />
@@ -112,16 +130,26 @@
       <directory value="$PROJECT_DIR$" />
       <method v="2" />
     </configuration>
+    <configuration name="go build simple-talking-system/client" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="simple-talking-system" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <filePath value="$PROJECT_DIR$/client/main.go" />
+      <package value="simple-talking-system/client" />
+      <directory value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Go Build.go build simple-talking-system" />
       <item itemvalue="Go Build.go build main.go" />
+      <item itemvalue="Go Build.go build simple-talking-system/client" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Build.go build simple-talking-system/client" />
+        <item itemvalue="Go Build.go build simple-talking-system" />
         <item itemvalue="Go Build.go build simple-talking-system" />
         <item itemvalue="Go Build.go build main.go" />
-        <item itemvalue="Go Build.go build simple-talking-system" />
-        <item itemvalue="Go Build.go build simple-talking-system" />
         <item itemvalue="Go Build.go build simple-talking-system" />
       </list>
     </recent_temporary>
@@ -159,34 +187,34 @@
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
     <state x="1080" y="657" key="#GOROOT/0.0.2560.1440@0.0.2560.1440" timestamp="1605361141630" />
-    <state x="415" y="224" width="707" height="668" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606235161033">
+    <state x="415" y="192" width="707" height="708" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606238323643">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="415" y="224" width="707" height="668" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1606235161033" />
+    <state x="415" y="192" width="707" height="708" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1606238323643" />
     <state x="737" y="358" width="1086" height="758" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1440@0.0.2560.1440" timestamp="1605796873129" />
     <state x="496" y="163" key="#com.intellij.ide.util.MemberChooser" timestamp="1606228738570">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="496" y="163" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900@0.0.1440.900" timestamp="1606228738570" />
-    <state width="1398" height="304" key="GridCell.Tab.0.bottom" timestamp="1606236784994">
+    <state width="1398" height="304" key="GridCell.Tab.0.bottom" timestamp="1606238393719">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="304" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1606236784994" />
+    <state width="1398" height="304" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1606238393719" />
     <state width="2498" height="397" key="GridCell.Tab.0.bottom/0.0.2560.1440@0.0.2560.1440" timestamp="1606222930072" />
-    <state width="1398" height="304" key="GridCell.Tab.0.center" timestamp="1606236784993">
+    <state width="1398" height="304" key="GridCell.Tab.0.center" timestamp="1606238393718">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="304" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1606236784993" />
+    <state width="1398" height="304" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1606238393718" />
     <state width="2498" height="397" key="GridCell.Tab.0.center/0.0.2560.1440@0.0.2560.1440" timestamp="1606222930071" />
-    <state width="1398" height="304" key="GridCell.Tab.0.left" timestamp="1606236784993">
+    <state width="1398" height="304" key="GridCell.Tab.0.left" timestamp="1606238393717">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="304" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1606236784993" />
+    <state width="1398" height="304" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1606238393717" />
     <state width="2498" height="397" key="GridCell.Tab.0.left/0.0.2560.1440@0.0.2560.1440" timestamp="1606222930071" />
-    <state width="1398" height="304" key="GridCell.Tab.0.right" timestamp="1606236784994">
+    <state width="1398" height="304" key="GridCell.Tab.0.right" timestamp="1606238393718">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="304" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1606236784994" />
+    <state width="1398" height="304" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1606238393718" />
     <state width="2498" height="397" key="GridCell.Tab.0.right/0.0.2560.1440@0.0.2560.1440" timestamp="1606222930071" />
     <state width="2504" height="494" key="GridCell.Tab.1.bottom" timestamp="1605715560792">
       <screen x="0" y="0" width="2560" height="1440" />
