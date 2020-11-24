@@ -3,19 +3,15 @@ package main
 import (
 	"fmt"
 	"net"
-	"simple-talking-system/common/utils"
 )
 
-func process(conn net.Conn) {
+func mainProcess(conn net.Conn) {
 	defer conn.Close()
-	for {
-		_, err := utils.ReadBytes(conn)
-		if err != nil {
-			fmt.Println("readBytes error:", err)
-			return
-		}
+	p := Processor{Conn: conn}
+	err := p.process2()
+	if err != nil {
+		return
 	}
-
 }
 
 func main() {
@@ -33,7 +29,7 @@ func main() {
 			fmt.Println("accept error:", err)
 		} else {
 			fmt.Println("get message from ", conn.RemoteAddr())
-			go process(conn)
+			go mainProcess(conn)
 		}
 
 	}
