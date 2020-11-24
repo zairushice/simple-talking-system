@@ -9,7 +9,12 @@ import (
 	"simple-talking-system/common/message"
 )
 
-func WriteBytes(conn net.Conn, bytes []byte) (err error) {
+type Transfer struct {
+	Conn net.Conn
+	Buf  [8096]byte
+}
+
+func (t *Transfer) WriteBytes(conn net.Conn, bytes []byte) (err error) {
 	msgLength := uint32(len(bytes))
 	lenBytes := make([]byte, 4)
 	binary.BigEndian.PutUint32(lenBytes, msgLength)
@@ -29,7 +34,7 @@ func WriteBytes(conn net.Conn, bytes []byte) (err error) {
 	return
 }
 
-func ReadBytes(conn net.Conn) (msg message.Message, err error) {
+func (t Transfer) ReadBytes(conn net.Conn) (msg message.Message, err error) {
 	buf := make([]byte, 8096)
 	_, err = conn.Read(buf[:4])
 	if err == io.EOF {

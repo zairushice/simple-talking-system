@@ -34,10 +34,27 @@ func login(userId int, passWord string) (err error) {
 		fmt.Println("dial error:", err)
 		return
 	}
-
+	defer conn.Close()
 	err = utils.WriteBytes(conn, bytes)
 	if err != nil {
 		fmt.Println("write message error:", err)
+	}
+
+	resMsg, err := utils.ReadBytes(conn)
+	if err != nil {
+		fmt.Println("read message error:", err)
+		return
+	}
+	loginResMsg := new(message.LoginResMsg)
+	err = json.Unmarshal([]byte(resMsg.Data), loginResMsg)
+	if err != nil {
+		fmt.Println("unmarshal login response message error:", err)
+		return
+	}
+	if loginResMsg.Code == 200 {
+		fmt.Println("successfully login!!")
+	} else {
+		fmt.Printf("error code:%v, error message:%v\n", loginResMsg.Code, loginResMsg.Error)
 	}
 
 	return
