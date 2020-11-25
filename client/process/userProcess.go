@@ -1,14 +1,17 @@
-package main
+package process
 
 import (
 	"encoding/json"
 	"fmt"
 	"net"
+	"simple-talking-system/client/utils"
 	"simple-talking-system/common/message"
-	"simple-talking-system/common/utils"
 )
 
-func login(userId int, passWord string) (err error) {
+type UserProcess struct {
+}
+
+func (this *UserProcess) Login(userId int, passWord string) (err error) {
 	msg := message.Message{
 		Type: message.LoginMsgType,
 	}
@@ -29,18 +32,19 @@ func login(userId int, passWord string) (err error) {
 		return err
 	}
 
-	conn, err := net.Dial("tcp", "192.168.50.59:8888")
+	conn, err := net.Dial("tcp", "192.168.50.81:8888")
 	if err != nil {
 		fmt.Println("dial error:", err)
 		return
 	}
 	defer conn.Close()
-	err = utils.WriteBytes(conn, bytes)
+	tf := &utils.Transfer{Conn: conn}
+	err = tf.WriteBytes(bytes)
 	if err != nil {
 		fmt.Println("write message error:", err)
 	}
 
-	resMsg, err := utils.ReadBytes(conn)
+	resMsg, err := tf.ReadBytes()
 	if err != nil {
 		fmt.Println("read message error:", err)
 		return
@@ -53,6 +57,10 @@ func login(userId int, passWord string) (err error) {
 	}
 	if loginResMsg.Code == 200 {
 		fmt.Println("successfully login!!")
+		go processServerMsg(conn)
+		for {
+			ShowMenu()
+		}
 	} else {
 		fmt.Printf("error code:%v, error message:%v\n", loginResMsg.Code, loginResMsg.Error)
 	}
