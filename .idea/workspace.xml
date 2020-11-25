@@ -22,8 +22,7 @@
     <list default="true" id="be7d44bb-8449-4f4c-b204-0fbc0c984e1b" name="Default Changelist" comment="update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/login.go" beforeDir="false" afterPath="$PROJECT_DIR$/client/login.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/message/message.go" beforeDir="false" afterPath="$PROJECT_DIR$/common/message/message.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -38,7 +37,7 @@
       </list>
     </option>
   </component>
-  <component name="GOROOT" path="/usr/local/go" />
+  <component name="GOROOT" path="E:\Go" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -60,9 +59,24 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
   </component>
   <component name="RunManager" selected="Go Build.go build simple-talking-system/client">
+    <configuration name="go build main.go (1)" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="simple-talking-system" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/client/main.go" />
+      <package value="simple-talking-system" />
+      <directory value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
     <configuration name="go build main.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="simple-talking-system" />
       <working_directory value="$PROJECT_DIR$" />
@@ -84,10 +98,12 @@
     <list>
       <item itemvalue="Go Build.go build main.go" />
       <item itemvalue="Go Build.go build simple-talking-system/client" />
+      <item itemvalue="Go Build.go build main.go (1)" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Go Build.go build simple-talking-system/client" />
+        <item itemvalue="Go Build.go build main.go (1)" />
         <item itemvalue="Go Build.go build main.go" />
       </list>
     </recent_temporary>
@@ -121,29 +137,38 @@
     </environment>
   </component>
   <component name="WindowStateProjectService">
-    <state x="1080" y="657" key="#GOROOT" timestamp="1605361141630">
-      <screen x="0" y="0" width="2560" height="1440" />
+    <state x="864" y="507" key="#GOROOT" timestamp="1605851279792">
+      <screen x="0" y="0" width="2048" height="1112" />
     </state>
+    <state x="864" y="507" key="#GOROOT/0.0.2048.1112@0.0.2048.1112" timestamp="1605851279792" />
     <state x="1080" y="657" key="#GOROOT/0.0.2560.1440@0.0.2560.1440" timestamp="1605361141630" />
     <state x="737" y="358" width="1086" height="758" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1605796873129">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
     <state x="737" y="358" width="1086" height="758" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1440@0.0.2560.1440" timestamp="1605796873129" />
-    <state width="2498" height="397" key="GridCell.Tab.0.bottom" timestamp="1605797014655">
-      <screen x="0" y="0" width="2560" height="1440" />
+    <state x="800" y="262" key="#com.intellij.ide.util.MemberChooser" timestamp="1606285408862">
+      <screen x="0" y="0" width="2048" height="1112" />
     </state>
+    <state x="800" y="262" key="#com.intellij.ide.util.MemberChooser/0.0.2048.1112@0.0.2048.1112" timestamp="1606285408862" />
+    <state width="2005" height="305" key="GridCell.Tab.0.bottom" timestamp="1606288458185">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state width="2005" height="305" key="GridCell.Tab.0.bottom/0.0.2048.1112@0.0.2048.1112" timestamp="1606288458185" />
     <state width="2498" height="397" key="GridCell.Tab.0.bottom/0.0.2560.1440@0.0.2560.1440" timestamp="1605797014655" />
-    <state width="2498" height="397" key="GridCell.Tab.0.center" timestamp="1605797014655">
-      <screen x="0" y="0" width="2560" height="1440" />
+    <state width="2005" height="305" key="GridCell.Tab.0.center" timestamp="1606288458185">
+      <screen x="0" y="0" width="2048" height="1112" />
     </state>
+    <state width="2005" height="305" key="GridCell.Tab.0.center/0.0.2048.1112@0.0.2048.1112" timestamp="1606288458185" />
     <state width="2498" height="397" key="GridCell.Tab.0.center/0.0.2560.1440@0.0.2560.1440" timestamp="1605797014655" />
-    <state width="2498" height="397" key="GridCell.Tab.0.left" timestamp="1605797014655">
-      <screen x="0" y="0" width="2560" height="1440" />
+    <state width="2005" height="305" key="GridCell.Tab.0.left" timestamp="1606288458185">
+      <screen x="0" y="0" width="2048" height="1112" />
     </state>
+    <state width="2005" height="305" key="GridCell.Tab.0.left/0.0.2048.1112@0.0.2048.1112" timestamp="1606288458185" />
     <state width="2498" height="397" key="GridCell.Tab.0.left/0.0.2560.1440@0.0.2560.1440" timestamp="1605797014655" />
-    <state width="2498" height="397" key="GridCell.Tab.0.right" timestamp="1605797014655">
-      <screen x="0" y="0" width="2560" height="1440" />
+    <state width="2005" height="305" key="GridCell.Tab.0.right" timestamp="1606288458185">
+      <screen x="0" y="0" width="2048" height="1112" />
     </state>
+    <state width="2005" height="305" key="GridCell.Tab.0.right/0.0.2048.1112@0.0.2048.1112" timestamp="1606288458185" />
     <state width="2498" height="397" key="GridCell.Tab.0.right/0.0.2560.1440@0.0.2560.1440" timestamp="1605797014655" />
     <state width="2504" height="494" key="GridCell.Tab.1.bottom" timestamp="1605715560792">
       <screen x="0" y="0" width="2560" height="1440" />
@@ -172,5 +197,9 @@
     </state>
     <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1604420745083" />
     <state x="569" y="304" key="Vcs.Push.Dialog.v2/0.0.2560.1440@0.0.2560.1440" timestamp="1605797171311" />
+    <state x="687" y="243" width="672" height="678" key="search.everywhere.popup" timestamp="1605860505934">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state x="687" y="243" width="672" height="678" key="search.everywhere.popup/0.0.2048.1112@0.0.2048.1112" timestamp="1605860505934" />
   </component>
 </project>

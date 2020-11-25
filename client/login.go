@@ -1,58 +1,61 @@
 package main
 
 import (
-	"encoding/binary"
 	"encoding/json"
 	"fmt"
 	"net"
 	"simple-talking-system/common/message"
+	"simple-talking-system/common/utils"
 )
-
-func writeBytes(conn net.Conn, bytes []byte) (err error) {
-	n, err := conn.Write(bytes)
-	if err != nil {
-		fmt.Println("write bytes error:", err)
-	}
-
-	fmt.Println("write bytes=", n)
-	return
-}
 
 func login(userId int, passWord string) (err error) {
 	msg := message.Message{
 		Type: message.LoginMsgType,
-		Data: message.LoginMsg{
-			UserId:       userId,
-			UserPassword: passWord,
-			UserName:     "test1",
-		},
 	}
+	data := message.LoginMsg{
+		UserId:       userId,
+		UserPassword: passWord,
+		UserName:     "test1",
+	}
+	dataBytes, err := json.Marshal(data)
+	if err != nil {
+		fmt.Println("marshal message.Data error:", err)
+	}
+	msg.Data = string(dataBytes)
 	bytes, err := json.Marshal(msg)
 	if err != nil {
 		fmt.Println("marshal error:", err)
 		return err
 	}
-	msgLength := uint32(len(bytes))
-	lenBytes := make([]byte, 4)
-	binary.BigEndian.PutUint32(lenBytes, msgLength)
 
-	conn, err := net.Dial("tcp", "192.168.50.81:8888")
+	conn, err := net.Dial("tcp", "192.168.10.230:8888")
 	if err != nil {
 		fmt.Println("dial error:", err)
 		return
 	}
-
-	err = writeBytes(conn, lenBytes)
+	defer conn.Close()
+	tf := utils.Transfer{Conn: conn}
+	err = tf.WriteBytes(bytes)
 	if err != nil {
-		fmt.Println("write message length error:", err)
+		fmt.Println("write bytes error:", err)
 		return
 	}
-	err = writeBytes(conn, bytes)
+	resMsg, err := tf.ReadBytes()
 	if err != nil {
-		fmt.Println("write message error:", err)
+		fmt.Println("read message error:", err)
+		return
 	}
-	fmt.Println("message length=", msgLength)
-	fmt.Println("message content=", string(bytes))
-
+	loginResMsg := new(message.LoginResMsg)
+	err = json.Unmarshal([]byte(resMsg.Data), loginResMsg)
+	if err != nil {
+		fmt.Println("unmarshal login response message error:", err)
+		return
+	}
+	if loginResMsg.Code == 200 {
+		fmt.Println("successfully login!!")
+	} else {
+		fmt.Printf("error code:%v, error message:%v\n", loginResMsg.Code, loginResMsg.Error)
+	}
 	return
+
 }
