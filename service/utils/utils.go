@@ -35,11 +35,14 @@ func (this *Transfer) WriteBytes(bytes []byte) (err error) {
 
 func (this Transfer) ReadBytes() (msg message.Message, err error) {
 	_, err = this.Conn.Read(this.Buf[:4])
-	if err == io.EOF {
-		fmt.Println("client has closed the connection")
-		return
-	} else if err != nil {
-		fmt.Println("read message length error:", err)
+	if err != nil {
+		if err == io.EOF {
+			fmt.Println("client has closed the connection")
+			return
+		} else {
+			fmt.Println("read message length error:", err)
+			return
+		}
 	}
 	lengthUint := binary.BigEndian.Uint32(this.Buf[:4])
 	fmt.Println(lengthUint)

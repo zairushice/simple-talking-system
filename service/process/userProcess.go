@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net"
 	"simple-talking-system/common/message"
+	"simple-talking-system/service/model"
 	"simple-talking-system/service/utils"
 )
 
@@ -24,13 +25,22 @@ func (this *UserProcessor) ServerProcessLogin(msg *message.Message) (err error) 
 	resMsg := new(message.Message)
 	resMsg.Type = message.LoginResMsgType
 	loginResMsg := new(message.LoginResMsg)
-	if loginMsg.UserId == 200 && loginMsg.UserPassword == "selangwudi" {
-		loginResMsg.Code = 200
-		loginResMsg.Error = "success"
-
+	user, err := model.MyUserDao.Login(loginMsg.UserId, loginMsg.UserPassword)
+	if err != nil {
+		if err == model.ErrorWrongPassword {
+			loginResMsg.Code = 403
+			loginResMsg.Error = err.Error()
+		} else if err == model.ErrorNoSuchUserId {
+			loginResMsg.Code = 500
+			loginResMsg.Error = err.Error()
+		} else {
+			loginResMsg.Code = 505
+			loginResMsg.Error = "server internal error"
+		}
 	} else {
-		loginResMsg.Code = 500
-		loginResMsg.Error = "userId does not exist"
+		loginResMsg.Code = 200
+		loginResMsg.Error = "login success!!"
+		fmt.Println(user, "login success!!")
 	}
 	loginResMsgBytes, err := json.Marshal(loginResMsg)
 	resMsg.Data = string(loginResMsgBytes)

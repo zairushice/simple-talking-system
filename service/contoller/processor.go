@@ -1,4 +1,4 @@
-package processor
+package contoller
 
 import (
 	"fmt"
@@ -8,11 +8,11 @@ import (
 	"simple-talking-system/service/utils"
 )
 
-type Processor struct {
+type Controller struct {
 	Conn net.Conn
 }
 
-func (this *Processor) ServerProcessMessage(msg *message.Message) (err error) {
+func (this *Controller) ServerProcessMessage(msg *message.Message) (err error) {
 	up := &process.UserProcessor{Conn: this.Conn}
 	switch msg.Type {
 	case message.LoginMsgType:
@@ -25,11 +25,11 @@ func (this *Processor) ServerProcessMessage(msg *message.Message) (err error) {
 	return
 }
 
-func (this *Processor) Process2() (err error) {
+func (this *Controller) Process2() (err error) {
+	tf := &utils.Transfer{
+		Conn: this.Conn,
+	}
 	for {
-		tf := &utils.Transfer{
-			Conn: this.Conn,
-		}
 		msg, err := tf.ReadBytes()
 		if err != nil {
 			fmt.Println("readBytes error:", err)

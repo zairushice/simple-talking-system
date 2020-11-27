@@ -32,7 +32,7 @@ func (this *UserProcess) Login(userId int, passWord string) (err error) {
 		return err
 	}
 
-	conn, err := net.Dial("tcp", "192.168.50.81:8888")
+	conn, err := net.Dial("tcp", "192.168.10.230:8888")
 	if err != nil {
 		fmt.Println("dial error:", err)
 		return

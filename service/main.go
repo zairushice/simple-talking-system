@@ -2,13 +2,33 @@ package main
 
 import (
 	"fmt"
+	"github.com/gomodule/redigo/redis"
 	"net"
-	"simple-talking-system/service/processor"
+	"simple-talking-system/service/contoller"
+	"simple-talking-system/service/model"
+	"time"
 )
 
-func mainProcess(conn net.Conn) {
+var pool *redis.Pool
+
+func initPool(network string, address string, maxIdle int, maxActive int, idleTimeout time.Duration) {
+	pool = &redis.Pool{
+		Dial: func() (redis.Conn, error) {
+			return redis.Dial(network, address)
+		},
+		MaxIdle:     maxIdle,
+		MaxActive:   maxActive,
+		IdleTimeout: idleTimeout,
+	}
+}
+
+func initUserDao() {
+	model.MyUserDao = model.NewUserDao(pool)
+}
+
+func process(conn net.Conn) {
 	defer conn.Close()
-	p := processor.Processor{Conn: conn}
+	p := contoller.Controller{Conn: conn}
 	err := p.Process2()
 	if err != nil {
 		return
@@ -16,6 +36,8 @@ func mainProcess(conn net.Conn) {
 }
 
 func main() {
+	initPool("tcp", "192.168.10.94:6379", 16, 0, 300*time.Second)
+	initUserDao()
 	listen, err := net.Listen("tcp", "0.0.0.0:8888")
 	defer listen.Close()
 	fmt.Println("start listening on ", listen.Addr())
@@ -30,7 +52,7 @@ func main() {
 			fmt.Println("accept error:", err)
 		} else {
 			fmt.Println("get message from ", conn.RemoteAddr())
-			go mainProcess(conn)
+			go process(conn)
 		}
 
 	}
