@@ -8,6 +8,7 @@ import (
 
 var userId int
 var passWord string
+var userName string
 
 func main() {
 	var key int
@@ -29,23 +30,47 @@ func main() {
 				_, err := fmt.Scanf("%d\n", &userId)
 				if err != nil {
 					fmt.Println(err)
+					return
 				}
 				fmt.Print("passWord:")
 				_, err = fmt.Scanf("%s\n", &passWord)
 				if err != nil {
-					fmt.Println("err")
+					fmt.Println(err)
+					return
 				} else {
 					up := &process.UserProcess{}
 					err := up.Login(userId, passWord)
 					if err != nil {
 						fmt.Println(err)
+						return
 					}
 				}
 
 			}
 		case 2:
 			{
-				fmt.Println("turn to sign up")
+				fmt.Print("create a userId:")
+				_, err := fmt.Scanf("%d\n", &userId)
+				if err != nil {
+					fmt.Println(err)
+					return
+				}
+				fmt.Print("create a password:")
+				_, err = fmt.Scanf("%s\n", &passWord)
+				if err != nil {
+					fmt.Println(err)
+				}
+				fmt.Print("create a nickname:")
+				_, err = fmt.Scanf("%s\n", &userName)
+				if err != nil {
+					fmt.Println(err)
+				}
+				up := &process.UserProcess{}
+				err = up.Register(userId, passWord, userName)
+				if err != nil {
+					fmt.Println(err)
+				}
+
 			}
 		case 3:
 			{

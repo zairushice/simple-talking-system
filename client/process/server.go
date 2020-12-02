@@ -9,11 +9,11 @@ import (
 
 func ShowMenu() {
 	fmt.Println("*********LOGIN SUCCESS!!*********")
-	fmt.Println("*********1.LIST ALL ONLINE USERS*********")
-	fmt.Println("*********2.SEND MESSAGE*********")
-	fmt.Println("*********3.LIST CHAT RECORD*********")
-	fmt.Println("*********4.EXIT*********")
-	fmt.Println("*********CHOOSE<1-4>*********")
+	fmt.Println("\t1.LIST ALL ONLINE USERS")
+	fmt.Println("\t\t2.SEND MESSAGE")
+	fmt.Println("\t\t3.LIST CHAT RECORD")
+	fmt.Println("\t\t\t4.EXIT")
+	fmt.Println("\t\t\tCHOOSE<1-4>")
 	var key int
 	_, err := fmt.Scanf("%d\n", &key)
 	if err != nil {

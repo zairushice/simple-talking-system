@@ -13,11 +13,12 @@ type Controller struct {
 }
 
 func (this *Controller) ServerProcessMessage(msg *message.Message) (err error) {
-	up := &process.UserProcessor{Conn: this.Conn}
 	switch msg.Type {
 	case message.LoginMsgType:
+		up := &process.UserProcessor{Conn: this.Conn}
 		err = up.ServerProcessLogin(msg)
 	case message.RegisterMsgType:
+		up := &process.UserProcessor{Conn: this.Conn}
 		err = up.ServerProcessRegister(msg)
 	default:
 		fmt.Println("invalid message type")

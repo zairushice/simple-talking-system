@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/gomodule/redigo/redis"
+	"simple-talking-system/common/message"
 )
 
 var (
@@ -51,6 +52,24 @@ func (this *UserDao) Login(userId int, userPassword string) (user *User, err err
 	if user.UserPassword != userPassword {
 		err = ErrorWrongPassword
 		return
+	}
+	return
+}
+
+func (this *UserDao) Register(user *message.User) (err error) {
+	conn := this.Pool.Get()
+	defer conn.Close()
+	_, err = this.getUserById(conn, user.UserId)
+	if err == nil {
+		err = ErrorExistUserId
+		return
+	}
+	bytes, err := json.Marshal(user)
+	encoding := base64.StdEncoding.EncodeToString(bytes)
+	_, err = conn.Do("hset", "users", user.UserId, encoding)
+	if err != nil {
+		fmt.Println("write redis error:", err)
+		return err
 	}
 	return
 }

@@ -8,9 +8,7 @@ const (
 )
 
 type RegisterMsg struct {
-	UserId       int    `json:"userId"`
-	UserPassword string `json:"password"`
-	Email        string `json:"email"`
+	User User `json:"user"`
 }
 
 type RegisterResMsg struct {

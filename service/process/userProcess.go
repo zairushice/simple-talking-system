@@ -16,7 +16,7 @@ type UserProcessor struct {
 func (this *UserProcessor) ServerProcessLogin(msg *message.Message) (err error) {
 	dataBytes := []byte(msg.Data)
 	loginMsg := new(message.LoginMsg)
-	err = json.Unmarshal(dataBytes, &loginMsg)
+	err = json.Unmarshal(dataBytes, loginMsg)
 	if err != nil {
 		fmt.Println("unmarshal message.Data error:", err)
 		return
@@ -40,14 +40,14 @@ func (this *UserProcessor) ServerProcessLogin(msg *message.Message) (err error) 
 	} else {
 		loginResMsg.Code = 200
 		loginResMsg.Error = "login success!!"
-		fmt.Println(user, "login success!!")
+		fmt.Println(*user, "login success!!")
 	}
 	loginResMsgBytes, err := json.Marshal(loginResMsg)
-	resMsg.Data = string(loginResMsgBytes)
 	if err != nil {
 		fmt.Println("marshal login response message.Data error:", err)
 		return
 	}
+	resMsg.Data = string(loginResMsgBytes)
 	resMsgBytes, err := json.Marshal(resMsg)
 	if err != nil {
 		fmt.Println("marshal login response message error:", err)
@@ -65,5 +65,46 @@ func (this *UserProcessor) ServerProcessLogin(msg *message.Message) (err error) 
 }
 
 func (this *UserProcessor) ServerProcessRegister(msg *message.Message) (err error) {
+	dataBytes := []byte(msg.Data)
+	registerData := new(message.RegisterMsg)
+	err = json.Unmarshal(dataBytes, registerData)
+	if err != nil {
+		return
+	}
+	err = model.MyUserDao.Register(&registerData.User)
+	resMsg := new(message.Message)
+	resMsg.Type = message.RegisterResMsgType
+	registerResMsg := new(message.RegisterResMsg)
+	if err != nil {
+		if err == model.ErrorExistUserId {
+			registerResMsg.Code = 505
+			registerResMsg.Error = model.ErrorExistUserId.Error()
+		} else {
+			registerResMsg.Code = 506
+			registerResMsg.Error = "register unknown error:" + err.Error()
+		}
+	} else {
+		registerResMsg.Code = 200
+		registerResMsg.Error = "注册成功!!"
+	}
+
+	marshal, err := json.Marshal(registerResMsg)
+	if err != nil {
+		return
+	}
+	resMsg.Data = string(marshal)
+	resMsgBytes, err := json.Marshal(resMsg)
+	if err != nil {
+		return
+	}
+	tf := utils.Transfer{
+		Conn: this.Conn,
+	}
+	err = tf.WriteBytes(resMsgBytes)
+	if err != nil {
+		fmt.Println("write registerResMsg error:", err)
+		return
+	}
 	return
+
 }
